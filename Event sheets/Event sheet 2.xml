@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 2</name>
+    <events>
+        <variable constant="0" name="Activar" sid="4100465476261691" static="0" type="number">100</variable>
+        <event-block sid="3754858215614907">
+            <conditions>
+                <condition id="2" name="Is playing" sid="5356826278791591" type="ojo">
+                    <param id="0" name="Animation">&quot;ojeando&quot;</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9070093096652543" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-1" name="Every tick" sid="2946242211747586" type="System" />
+            </conditions>
+            <actions>
+                <action id="-6" name="Set height" sid="6740767358928727" type="ojo">
+                    <param id="0" name="Height">ojo.Height+1</param>
+                </action>
+                <action id="-5" name="Set width" sid="6894012818637899" type="ojo">
+                    <param id="0" name="Width">ojo.Width+1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8017199952322896">
+            <conditions>
+                <condition id="4" name="On finished" sid="545782151562965" type="ojo">
+                    <param id="0" name="Animation">&quot;ojeando&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Fade" id="1" name="Start fade" sid="4423807425324951" type="ojo" />
+                <action id="-3" name="Set position" sid="9806043766013656" type="Garra">
+                    <param id="0" name="X">640</param>
+                    <param id="1" name="Y">510</param>
+                </action>
+                <action behavior="Fade" id="1" name="Start fade" sid="8911494201328153" type="Garra" />
+                <action id="-9" name="Set value" sid="9903842068784753" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4078199700540264">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="4666877544260294" type="System" />
+                <condition id="-14" name="Compare variable" sid="5606526970218138" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-6" name="Set height" sid="5127415913429581" type="Garra">
+                    <param id="0" name="Height">Garra.Height+1</param>
+                </action>
+                <action id="-5" name="Set width" sid="410186126552649" type="Garra">
+                    <param id="0" name="Width">Garra.Width+1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9798780971042087">
+            <conditions>
+                <condition id="-6" name="Compare height" sid="5125219354167441" type="Garra">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Height">1220</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="9139564929021329" type="Cuerpo">
+                    <param id="0" name="X">640</param>
+                    <param id="1" name="Y">510</param>
+                </action>
+                <action behavior="Fade" id="1" name="Start fade" sid="987506989140574" type="Cuerpo" />
+                <action id="-9" name="Set value" sid="1816321636691921" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+                <action id="6" name="Set speed" sid="2724866297134605" type="Cuerpo">
+                    <param id="0" name="Speed">5</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="673011143605727">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="7977464934422067" type="System" />
+                <condition id="-14" name="Compare variable" sid="1128592241923613" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-6" name="Set height" sid="705727411998338" type="Cuerpo">
+                    <param id="0" name="Height">Cuerpo.Height+1</param>
+                </action>
+                <action id="-5" name="Set width" sid="4056716190260949" type="Cuerpo">
+                    <param id="0" name="Width">Cuerpo.Width+1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7473202108623925">
+            <conditions>
+                <condition id="-6" name="Compare height" sid="713322417994203" type="Cuerpo">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Height">1220</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="1233110969380306" type="Garra">
+                    <param id="0" name="X">-1000</param>
+                    <param id="1" name="Y">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="3264820164816196" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Value">3</param>
+                </action>
+                <action id="-3" name="Set position" sid="898569889763822" type="MOSTROLETRAS">
+                    <param id="0" name="X">640</param>
+                    <param id="1" name="Y">510</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7229475116388879">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="7477315837712204" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ColisionJugar</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Wait" sid="9694001832849514" type="System">
+                    <param id="0" name="Seconds">0.5</param>
+                </action>
+                <action id="-15" name="Set visible" sid="3804799853758262" type="FondoCreditos">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8798841667002534" type="jugarCreditos">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="9277977034502168" type="ojo">
+                    <param id="0" name="X">640</param>
+                    <param id="1" name="Y">510</param>
+                </action>
+                <action id="6" name="Set speed" sid="7346456077952538" type="ojo">
+                    <param id="0" name="Speed">5</param>
+                </action>
+                <action id="6" name="Stop" sid="9183026596732388" type="Audio">
+                    <param id="0" name="Tag">&quot;Background&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="6186766349361287" type="Audio">
+                    <param id="0" name="Audio file">Intro</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;intro&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="4849875670571956" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5619675789761975">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="2592720955923698" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ColisionCreditos</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Wait" sid="8359727179472473" type="System">
+                    <param id="0" name="Seconds">1</param>
+                </action>
+                <action id="-3" name="Set position" sid="2120045935160874" type="FondoVibracion">
+                    <param id="0" name="X">640</param>
+                    <param id="1" name="Y">510</param>
+                </action>
+                <action behavior="ScrollTo" id="0" name="Shake" sid="9800880575900979" type="Camera">
+                    <param id="0" name="Magnitude">100</param>
+                    <param id="1" name="Duration">3</param>
+                    <param id="2" name="Mode">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="446163993183389" type="FondoCreditos">
+                    <param id="0" name="X">-2000</param>
+                    <param id="1" name="Y">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="82183098773107" type="jugarCreditos">
+                    <param id="0" name="X">-1000</param>
+                    <param id="1" name="Y">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="7054512483371091" type="NombresCreditos">
+                    <param id="0" name="X">596+50</param>
+                    <param id="1" name="Y">1215</param>
+                </action>
+                <action id="-3" name="Set position" sid="8541632330543249" type="CreditosLetra">
+                    <param id="0" name="X">579+50</param>
+                    <param id="1" name="Y">498</param>
+                </action>
+                <action behavior="Fade" id="1" name="Start fade" sid="5173743071500465" type="NombresCreditos" />
+                <action behavior="Fade" id="1" name="Start fade" sid="3342511273239898" type="CreditosLetra" />
+                <action id="-16" name="Wait" sid="4598247814124708" type="System">
+                    <param id="0" name="Seconds">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="9782594539084573" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7112846019288123">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="3939835645854311" type="System" />
+                <condition id="-14" name="Compare variable" sid="4715632393411125" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">10</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="3110474447596856" type="NombresCreditos">
+                    <param id="0" name="X">NombresCreditos.X</param>
+                    <param id="1" name="Y">NombresCreditos.Y-1.5</param>
+                </action>
+                <action id="-3" name="Set position" sid="674715016309199" type="CreditosLetra">
+                    <param id="0" name="X">CreditosLetra.X</param>
+                    <param id="1" name="Y">CreditosLetra.Y-1.5</param>
+                </action>
+                <action id="-16" name="Wait" sid="7215895724369635" type="System">
+                    <param id="0" name="Seconds">10</param>
+                </action>
+                <action id="-3" name="Set position" sid="6375208955561071" type="FondoVibracion">
+                    <param id="0" name="X">-2000</param>
+                    <param id="1" name="Y">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="6912598120558626" type="NombresCreditos">
+                    <param id="0" name="X">-1000</param>
+                    <param id="1" name="Y">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="1239347226925293" type="CreditosLetra">
+                    <param id="0" name="X">-1000</param>
+                    <param id="1" name="Y">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="7495036221020432" type="FondoCreditos">
+                    <param id="0" name="X">640</param>
+                    <param id="1" name="Y">510</param>
+                </action>
+                <action id="-3" name="Set position" sid="9452199028717473" type="jugarCreditos">
+                    <param id="0" name="X">621</param>
+                    <param id="1" name="Y">631</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5285876453274295">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9895194043847138" type="System">
+                    <param id="0" name="Variable">Activar</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="346334867649075" type="Cuerpo">
+                    <param id="0" name="X">-1000</param>
+                    <param id="1" name="Y">0</param>
+                </action>
+                <action behavior="Fade" id="1" name="Start fade" sid="521411284677067" type="MOSTROLETRAS" />
+                <action id="-16" name="Wait" sid="5499028124769588" type="System">
+                    <param id="0" name="Seconds">5</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="7295272568897024" type="System">
+                    <param id="0" name="Layout">Game</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7717371710331935">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="5153640147451169" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="9699517967984833" type="Audio">
+                    <param id="0" name="Audio file">Background</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;Background&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

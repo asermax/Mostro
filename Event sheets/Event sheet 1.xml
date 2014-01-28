@@ -1,0 +1,1563 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="TipoSprite" sid="4091236847248557" static="0" type="text">Normal</variable>
+        <variable constant="0" name="ObjetosConseguidos" sid="1225002514319643" static="0" type="number">0</variable>
+        <variable constant="0" name="Corriendo" sid="7395343705353218" static="0" type="number">0</variable>
+        <variable constant="0" name="Stamina" sid="3625555988388927" static="0" type="number">350</variable>
+        <variable constant="0" name="TiempoTotal" sid="6226511973543201" static="0" type="number">0</variable>
+        <variable constant="0" name="MultiplicadorTiempoPersecucion" sid="7175860179363872" static="0" type="number">1</variable>
+        <variable constant="0" name="MultiplicadorTiempoIncrement" sid="5845872361650775" static="0" type="number">0.7</variable>
+        <variable constant="0" name="InitialSightRange" sid="1613108611719745" static="0" type="number">250</variable>
+        <variable constant="0" name="AugmentedSightRange" sid="2396831539056315" static="0" type="number">1000</variable>
+        <variable constant="0" name="Tiempo" sid="5930566907026292" static="0" type="number">0</variable>
+        <variable constant="0" name="SightRangeMultiplier" sid="2911222896969091" static="0" type="number">3</variable>
+        <variable constant="0" name="InititalSpeed" sid="3893118582834833" static="0" type="number">100</variable>
+        <variable constant="0" name="SpeedBoost" sid="4946744192915811" static="0" type="number">30</variable>
+        <variable constant="0" name="SpeedBoostIncrement" sid="7396121017535768" static="0" type="number">30</variable>
+        <variable constant="0" name="Persecusion" sid="2437026094939853" static="0" type="number">0</variable>
+        <event-block sid="3647116611570158">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="5824068969664051" type="Item">
+                    <param id="0" name="Instance variable">PutOn</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="123475186657594" type="Item">
+                    <param id="0" name="X">Personaje.X + Item.PutOnX</param>
+                    <param id="1" name="Y">Personaje.Y + Item.PutOnY</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5669796088542421">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="4174318239961487" type="System" />
+            </conditions>
+            <actions>
+                <action disabled="1" id="0" name="Set text" sid="3561061205376609" type="Timer">
+                    <param id="0" name="Text">&quot;Tiempo = &quot; &amp; int(Tiempo)</param>
+                </action>
+                <action id="0" name="Set text" sid="6732654998325966" type="TimerItem">
+                    <param id="0" name="Text">int(TiempoTotal-Personaje.Timer.CurrentTime(&quot;persecusion&quot;))</param>
+                </action>
+                <action id="-10" name="Set value" sid="2203328694607807" type="Enemigo">
+                    <param id="0" name="Instance variable">DistanciaPerEne</param>
+                    <param id="1" name="Value">(((Personaje.X - Enemigo.x)^2) + ((Personaje.y - Enemigo.y)^2))^(1/2)</param>
+                </action>
+                <action id="-3" name="Set position" sid="9188575074579933" type="ItemThumb">
+                    <param id="0" name="X">Personaje.X -540 + 50*ItemThumb.FrameNumber</param>
+                    <param id="1" name="Y">personaje.Y-420</param>
+                </action>
+                <action id="-5" name="Set width" sid="2159603585226866" type="BarraDeStamina">
+                    <param id="0" name="Width">Stamina</param>
+                </action>
+                <action id="-9" name="Set value" sid="9712687925695629" type="System">
+                    <param id="0" name="Variable">Tiempo</param>
+                    <param id="1" name="Value">time</param>
+                </action>
+                <action disabled="1" id="-3" name="Set position" sid="2045265834183598" type="Timer">
+                    <param id="0" name="X">Personaje.X+460</param>
+                    <param id="1" name="Y">personaje.Y-500</param>
+                </action>
+                <action id="-3" name="Set position" sid="5374277633435809" type="TimerItem">
+                    <param id="0" name="X">Personaje.X-12</param>
+                    <param id="1" name="Y">Personaje.Y-80</param>
+                </action>
+                <action id="-3" name="Set position" sid="7768457312624791" type="BarraDeStamina">
+                    <param id="0" name="X">Personaje.X-560</param>
+                    <param id="1" name="Y">Personaje.Y-475</param>
+                </action>
+                <action id="-3" name="Set position" sid="8541284437355938" type="Vision">
+                    <param id="0" name="X">personaje.X</param>
+                    <param id="1" name="Y">personaje.Y</param>
+                </action>
+                <action id="-3" name="Set position" sid="5288408312112969" type="AreaDeNoRespawn">
+                    <param id="0" name="X">personaje.X</param>
+                    <param id="1" name="Y">personaje.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1203950678183633">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8217480435741888" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="3508637200139222" type="Audio">
+                    <param id="0" name="Audio file">Background</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;Background&quot;</param>
+                </action>
+                <action id="-27" name="Set effect enabled" sid="4348621137968204" type="Vision">
+                    <param id="0" name="Mode">0</param>
+                    <param id="1" name="Effect">&quot;Pulse&quot;</param>
+                </action>
+                <action id="-3" name="Set position" sid="4110010591043234" type="Sprite">
+                    <param id="0" name="X">5370.136</param>
+                    <param id="1" name="Y">2502.683</param>
+                </action>
+                <action id="5" name="Set frame" sid="3836146809504877" type="Arbol">
+                    <param id="0" name="Frame number">Arbol.FrameNumber</param>
+                </action>
+                <action id="4" name="Set animation" sid="6986107064995937" type="Item">
+                    <param id="0" name="Animation">Item.Animation</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="9049611310301594" type="ItemThumb">
+                    <param id="0" name="Frame number">ItemThumb.FrameNumber</param>
+                </action>
+                <action id="-10" name="Set value" sid="3372455703594408" type="Enemigo">
+                    <param id="0" name="Instance variable">XInicial</param>
+                    <param id="1" name="Value">Enemigo.X</param>
+                </action>
+                <action id="-10" name="Set value" sid="5393895159968917" type="Enemigo">
+                    <param id="0" name="Instance variable">YInicial</param>
+                    <param id="1" name="Value">Enemigo.Y</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="3700161162953581" type="Enemigo">
+                    <param id="0" name="Angle">angle(Enemigo.X, Enemigo.Y, Enemigo.XFinal, Enemigo.YFinal)</param>
+                </action>
+                <action id="5" name="Set frame" sid="1050654470894978" type="Enemigo">
+                    <param id="0" name="Frame number">Enemigo.InititalFrame</param>
+                </action>
+                <action behavior="LineOfSight" id="2" name="Add obstacle" sid="8947826449683275" type="Enemigo">
+                    <param id="0" name="Obstacle">Pared</param>
+                </action>
+                <action behavior="LineOfSight" id="2" name="Add obstacle" sid="2009289174562552" type="Enemigo">
+                    <param id="0" name="Obstacle">Escondite</param>
+                </action>
+                <action behavior="LineOfSight" id="2" name="Add obstacle" sid="6021268754110364" type="Enemigo">
+                    <param id="0" name="Obstacle">Puerta</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3937423574916218">
+            <conditions>
+                <condition id="0" name="On ended" sid="4914788605814879" type="Audio">
+                    <param id="0" name="Tag">&quot;Muerte&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Wait" sid="4225075689397545" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="-21" name="Reset global variables" sid="2227104287310331" type="System" />
+                <action id="-26" name="Restart layout" sid="6144984368621052" type="System" />
+                <action behavior="8Direction" id="2" name="Set ignoring input" sid="2423893539189767" type="Personaje">
+                    <param id="0" name="Input">0</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="1041599264020311" type="Enemigo">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action id="11" name="Set collisions enabled" sid="8676204426815011" type="Enemigo">
+                    <param id="0" name="Collisions">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6588893245762548">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="726460860592022" type="Enemigo">
+                    <param id="0" name="Object">Personaje</param>
+                </condition>
+                <condition id="-19" name="Pick all" sid="3836594980738028" type="System">
+                    <param id="0" name="Object">Enemigo</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="2" name="Set ignoring input" sid="3518147567998473" type="Personaje">
+                    <param id="0" name="Input">1</param>
+                </action>
+                <action behavior="8Direction" id="0" name="Stop" sid="6095770168022524" type="Personaje" />
+                <action id="4" name="Set animation" sid="9543575714191129" type="Personaje">
+                    <param id="0" name="Animation">&quot;NormalMuerte&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="2556100436412467" type="Item">
+                    <param id="0" name="Instance variable">PutOn</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="11" name="Set collisions enabled" sid="1651611309835909" type="Item">
+                    <param id="0" name="Collisions">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="9268422943775888" type="Item">
+                    <param id="0" name="Animation">item.Animation</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="5783006458346659" type="Enemigo">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action id="11" name="Set collisions enabled" sid="986642857298235" type="Enemigo">
+                    <param id="0" name="Collisions">0</param>
+                </action>
+                <action id="2" name="Stop" sid="7627668281822252" type="Enemigo" />
+                <action id="6" name="Stop" sid="2813207746096438" type="Audio">
+                    <param id="0" name="Tag">&quot;Background&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="2466355687430837" type="Audio">
+                    <param id="0" name="Audio file">Muerte</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;Muerte&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="6860051100031449" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+                <action id="6" name="Stop" sid="5011292767808735" type="Audio">
+                    <param id="0" name="Tag">&quot;Corriendo&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="3762868832002569">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9595646111602372" type="System">
+                            <param id="0" name="Variable">ObjetosConseguidos</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Stop" sid="2839198872342817" type="Audio">
+                            <param id="0" name="Tag">&quot;FinalHeavy&quot;</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="2713695188106947" type="AnimOver">
+                            <param id="0" name="X">Personaje.X</param>
+                            <param id="1" name="Y">Personaje.Y</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="4918155150580954" type="AnimOver">
+                            <param id="0" name="Speed">10</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9244576445771222">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="3997616582908376" type="System" />
+                <condition id="-14" name="Compare variable" sid="433352643714358" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+                <condition id="-11" name="For Each" sid="2335711378507225" type="System">
+                    <param id="0" name="Object">Enemigo</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="8685937921987945" type="System">
+                    <param id="0" name="First value">Enemigo.Bullet.AngleOfMotion</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Second value">45</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="6092514873517695" type="System">
+                    <param id="0" name="First value">Enemigo.Bullet.AngleOfMotion</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">-45</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="6654439172201857" type="Enemigo">
+                    <param id="0" name="Animation">TipoSprite&amp;&quot;Right&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9143579303061603">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="9597853557491071" type="System" />
+                <condition id="-14" name="Compare variable" sid="2849966859218994" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+                <condition id="-11" name="For Each" sid="114870374160644" type="System">
+                    <param id="0" name="Object">Enemigo</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="6511667548258478">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="4286931064762393" type="System">
+                            <param id="0" name="First value">Enemigo.Bullet.AngleOfMotion</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">135</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="7600657525753357" type="System">
+                            <param id="0" name="First value">Enemigo.Bullet.AngleOfMotion</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">-135</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="4245835333197136" type="Enemigo">
+                            <param id="0" name="Animation">TipoSprite&amp;&quot;Left&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="7003110322958549">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="5375534398724984" type="System" />
+                <condition id="-14" name="Compare variable" sid="4111381272690247" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+                <condition id="-11" name="For Each" sid="3855514353723334" type="System">
+                    <param id="0" name="Object">Enemigo</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="7604535848417533" type="System">
+                    <param id="0" name="First value">Enemigo.Bullet.AngleOfMotion</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">-135</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="7186418704023537" type="System">
+                    <param id="0" name="First value">Enemigo.Bullet.AngleOfMotion</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Second value">-45</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="7901533331747583" type="Enemigo">
+                    <param id="0" name="Animation">TipoSprite&amp;&quot;Back&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7464139326246537">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="8960722415200456" type="System" />
+                <condition id="-14" name="Compare variable" sid="4314970555735032" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+                <condition id="-11" name="For Each" sid="1170025383913184" type="System">
+                    <param id="0" name="Object">Enemigo</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="7989244110705374" type="System">
+                    <param id="0" name="First value">Enemigo.Bullet.AngleOfMotion</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">45</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="500750677855771" type="System">
+                    <param id="0" name="First value">Enemigo.Bullet.AngleOfMotion</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Second value">135</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="314341108557777" type="Enemigo">
+                    <param id="0" name="Animation">TipoSprite&amp;&quot;Front&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="904109054087405">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="8797397833166043" type="System" />
+                <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="7864109636460986" type="Enemigo">
+                    <param id="0" name="Object">Personaje</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="9274055550219805" type="Enemigo">
+                    <param id="0" name="Angle">angle(Enemigo.X, Enemigo.Y, Personaje.X, Personaje.Y)</param>
+                </action>
+                <action id="-10" name="Set value" sid="4650819546802068" type="Enemigo">
+                    <param id="0" name="Instance variable">Estado</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action behavior="LineOfSight" id="0" name="Set range" sid="4472679776455979" type="Enemigo">
+                    <param id="0" name="Range">AugmentedSightRange</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3727857913498007">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6631663260620169" type="System" />
+                <condition id="-7" name="Compare instance variable" sid="9013094757075367" type="Enemigo">
+                    <param id="0" name="Instance variable">Estado</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="6244315446646544" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-3" inverted="1" name="Is on-screen" sid="2975379641167767" type="Enemigo" />
+                <condition id="-21" inverted="1" name="Is between values" sid="348340828813921" type="System">
+                    <param id="0" name="Value">enemigo.XInicial</param>
+                    <param id="1" name="Lower bound">AreaDeNoRespawn.x-AreaDeNoRespawn.Width/2</param>
+                    <param id="2" name="Upper bound">AreaDeNoRespawn.X+AreaDeNoRespawn.Width/2</param>
+                </condition>
+                <condition id="-21" inverted="1" name="Is between values" sid="7291095124778885" type="System">
+                    <param id="0" name="Value">enemigo.YInicial</param>
+                    <param id="1" name="Lower bound">AreaDeNoRespawn.Y-AreaDeNoRespawn.Height/2</param>
+                    <param id="2" name="Upper bound">AreaDeNoRespawn.Y+AreaDeNoRespawn.Height/2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="870181798576738" type="Enemigo">
+                    <param id="0" name="Instance variable">Estado</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="1741269854005686" type="Enemigo">
+                    <param id="0" name="X">Enemigo.XInicial</param>
+                    <param id="1" name="Y">Enemigo.YInicial</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="6120108887908516" type="Enemigo">
+                    <param id="0" name="Angle">angle(Enemigo.X, Enemigo.Y, Enemigo.XFinal, Enemigo.YFinal)</param>
+                </action>
+                <action behavior="LineOfSight" id="0" name="Set range" sid="729729574818437" type="Enemigo">
+                    <param id="0" name="Range">InitialSightRange</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5404834795107457">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="7992160448138791" type="System" />
+                <condition id="-1" name="Compare X" sid="2297171076248544" type="Enemigo">
+                    <param id="0" name="Comparison">5</param>
+                    <param id="1" name="X co-ordinate">enemigo.XFinal</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="8765097452314893" type="Enemigo">
+                    <param id="0" name="Comparison">5</param>
+                    <param id="1" name="Y co-ordinate">enemigo.YFinal</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="1302643596069212" type="Enemigo">
+                    <param id="0" name="Instance variable">Estado</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="7429592561170025" type="Enemigo">
+                    <param id="0" name="Angle">Enemigo.Bullet.AngleOfMotion + 180</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2854494731150146">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="1098591331822826" type="System" />
+                <condition id="-1" name="Compare X" sid="5853518437208378" type="Enemigo">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="X co-ordinate">enemigo.XInicial</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="8978084497442514" type="Enemigo">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="Y co-ordinate">enemigo.YInicial</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="1160976110589139" type="Enemigo">
+                    <param id="0" name="Instance variable">Estado</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="3983000560231197" type="Enemigo">
+                    <param id="0" name="Angle">Enemigo.Bullet.AngleOfMotion + 180</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="456471925725403">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9032234047449885" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="6119309699020838" type="Enemigo">
+                    <param id="0" name="Instance variable">DistanciaPerEne</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">InitialSightRange</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="LineOfSight" id="0" name="Set range" sid="8969145978104098" type="Enemigo">
+                    <param id="0" name="Range">InitialSightRange</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3849451094355851">
+            <conditions>
+                <condition id="-5" name="Compare width" sid="5600010368399888" type="BarraDeStamina">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="Width">175</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="6512203606515875" type="System">
+                    <param id="0" name="Interval (seconds)">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="6121923991708808" type="System">
+                    <param id="0" name="Variable">Corriendo</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="7534235420040684" type="System">
+                    <param id="0" name="Variable">Stamina</param>
+                    <param id="1" name="Value">8</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9386540473645057">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="4123901991519161" type="Keyboard">
+                    <param id="0" name="Key">16 (Mayusculas)</param>
+                </condition>
+                <condition id="-1" name="Every tick" sid="9808483515501952" type="System" />
+                <condition id="-14" name="Compare variable" sid="4919174774803899" type="System">
+                    <param id="0" name="Variable">Stamina</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">8</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8154799678912242" type="System">
+                    <param id="0" name="Variable">Corriendo</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action behavior="8Direction" id="4" name="Set max speed" sid="5370725528522524" type="Personaje">
+                    <param id="0" name="Max Speed">300</param>
+                </action>
+                <action id="6" name="Set speed" sid="267207375454957" type="Personaje">
+                    <param id="0" name="Speed">Personaje.AnimationSpeed * 2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1546828195945733">
+            <conditions>
+                <condition id="3" name="On key released" sid="9901436391735904" type="Keyboard">
+                    <param id="0" name="Key">16 (Mayusculas)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9644350734941122" type="System">
+                    <param id="0" name="Variable">Corriendo</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action behavior="8Direction" id="4" name="Set max speed" sid="1330781030258899" type="Personaje">
+                    <param id="0" name="Max Speed">200</param>
+                </action>
+                <action id="6" name="Set speed" sid="6152958705227298" type="Personaje">
+                    <param id="0" name="Speed">Personaje.AnimationSpeed / 2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6497477746661806">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="1852669363884554" type="System" />
+                <condition id="-14" name="Compare variable" sid="1747128713130266" type="System">
+                    <param id="0" name="Variable">Corriendo</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="1784277495023661" type="System">
+                    <param id="0" name="Variable">Stamina</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="6869390822866927" type="System">
+                    <param id="0" name="Variable">Stamina</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9631996336060788">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="9164497968903063" type="System" />
+                <condition id="-14" name="Compare variable" sid="7018480800170578" type="System">
+                    <param id="0" name="Variable">Stamina</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4752541617009274" type="System">
+                    <param id="0" name="Variable">Corriendo</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action behavior="8Direction" id="4" name="Set max speed" sid="9066772413293769" type="Personaje">
+                    <param id="0" name="Max Speed">200</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7896994284270328">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2732996278609273" type="Personaje">
+                    <param id="0" name="Object">PuertaInvisible</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="7643743482532118" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Solid" id="0" name="Set enabled" sid="9697716357167276" type="Puerta">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4166489642331762" type="TimerItem">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="452606128278683">
+            <conditions>
+                <condition id="1" inverted="1" name="Is overlapping another object" sid="7567884981103725" type="Personaje">
+                    <param id="0" name="Object">PuertaInvisible</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Solid" id="0" name="Set enabled" sid="527732935616178" type="Puerta">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block collapsed="1" sid="603757077214142">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="948158245552263" type="Personaje">
+                    <param id="0" name="Object">Item</param>
+                </condition>
+                <condition id="-33" name="Pick by comparison" sid="6874216419128157" type="System">
+                    <param id="0" name="Object">ItemThumb</param>
+                    <param id="1" name="Expression">ItemThumb.UID</param>
+                    <param id="2" name="Comparison">0</param>
+                    <param id="3" name="Value">Item.ThumbUID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="5484997360664971" type="Item">
+                    <param id="0" name="Instance variable">PutOn</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="6513718039631681" type="ItemThumb">
+                    <param id="0" name="Opacity">100</param>
+                </action>
+                <action id="-9" name="Set value" sid="4904605743057138" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="7441618608172642" type="Enemigo">
+                    <param id="0" name="Instance variable">Estado</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action behavior="LineOfSight" id="0" name="Set range" sid="9149468006808701" type="Enemigo">
+                    <param id="0" name="Range">AugmentedSightRange * SightRangeMultiplier</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="9488046923059576" type="Enemigo">
+                    <param id="0" name="Speed">InititalSpeed + SpeedBoost</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="6742049124209074" type="Personaje">
+                    <param id="0" name="Duration">10 * MultiplicadorTiempoPersecucion</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;persecusion&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="6396974952696927" type="System">
+                    <param id="0" name="Variable">TiempoTotal</param>
+                    <param id="1" name="Value">10*MultiplicadorTiempoPersecucion</param>
+                </action>
+                <action id="-10" name="Add to" sid="5221937993773394" type="System">
+                    <param id="0" name="Variable">MultiplicadorTiempoPersecucion</param>
+                    <param id="1" name="Value">MultiplicadorTiempoIncrement</param>
+                </action>
+                <action id="-10" name="Add to" sid="2408472459313422" type="System">
+                    <param id="0" name="Variable">SpeedBoost</param>
+                    <param id="1" name="Value">SpeedBoostIncrement</param>
+                </action>
+                <action id="-15" name="Set visible" sid="9360069131495639" type="TimerItem">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-10" name="Add to" sid="2288364235091257" type="System">
+                    <param id="0" name="Variable">ObjetosConseguidos</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="3652709491281322">
+                    <conditions>
+                        <condition id="5" inverted="1" name="Is tag playing" sid="8036602095031724" type="Audio">
+                            <param id="0" name="Tag">&quot;Corriendo&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Stop" sid="9799806452142071" type="Audio">
+                            <param id="0" name="Tag">&quot;Background&quot;</param>
+                        </action>
+                        <action id="0" name="Play" sid="4474109430923323" type="Audio">
+                            <param id="0" name="Audio file">Corriendo</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;Corriendo&quot;</param>
+                        </action>
+                        <action id="-27" name="Set effect enabled" sid="2176596452386521" type="Vision">
+                            <param id="0" name="Mode">1</param>
+                            <param id="1" name="Effect">&quot;Pulse&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="2546127749736066">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="2229263188086363" type="Personaje">
+                    <param id="0" name="Tag">&quot;persecusion&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="3158603743472736" type="TimerItem">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="6223520298535934" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action behavior="LineOfSight" id="0" name="Set range" sid="4101807729965125" type="Enemigo">
+                    <param id="0" name="Range">InitialSightRange</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="6956316975973485" type="Enemigo">
+                    <param id="0" name="Speed">InititalSpeed</param>
+                </action>
+                <action id="6" name="Stop" sid="8322578933554609" type="Audio">
+                    <param id="0" name="Tag">&quot;Corriendo&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="1006669558208202" type="Audio">
+                    <param id="0" name="Audio file">Background</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;Background&quot;</param>
+                </action>
+                <action id="-27" name="Set effect enabled" sid="6726423664488802" type="Vision">
+                    <param id="0" name="Mode">0</param>
+                    <param id="1" name="Effect">&quot;Pulse&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4926304915706893">
+            <conditions>
+                <condition behavior="8Direction" id="0" inverted="1" name="Is moving" sid="1907035709664414" type="Personaje" />
+                <condition id="2" inverted="1" name="Is playing" sid="6697832820253693" type="Personaje">
+                    <param id="0" name="Animation">&quot;NormalMuerte&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="5" name="Set frame" sid="997786734725113" type="Personaje">
+                    <param id="0" name="Frame number">0</param>
+                </action>
+                <action id="2" name="Stop" sid="7801397289092942" type="Personaje" />
+            </actions>
+            <sub-events>
+                <event-block sid="7065098604868002">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="1246300039325418" type="Item">
+                            <param id="0" name="Instance variable">PutOn</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Stop" sid="2709467465780942" type="Item" />
+                        <action id="5" name="Set frame" sid="2791563113158456" type="Item">
+                            <param id="0" name="Frame number">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="1810310971606334">
+            <conditions>
+                <condition behavior="8Direction" id="0" name="Is moving" sid="2566162374517818" type="Personaje" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block collapsed="1" sid="5070702125625259">
+                    <conditions>
+                        <condition disabled="1" id="2" name="Key is down" sid="5923557249886852" type="Keyboard">
+                            <param id="0" name="Key">40 (Down arrow)</param>
+                        </condition>
+                        <condition id="-21" name="Is between values" sid="9764450479489773" type="System">
+                            <param id="0" name="Value">Personaje.8Direction.MovingAngle</param>
+                            <param id="1" name="Lower bound">45</param>
+                            <param id="2" name="Upper bound">135</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="5462774640006578" type="Personaje">
+                            <param id="0" name="Animation">TipoSprite&amp;&quot;Front&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="3108351619456842">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="9575249635791337" type="Item">
+                                    <param id="0" name="Instance variable">PutOn</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="819369704745022" type="Item">
+                                    <param id="0" name="Animation">Item.Animation &amp; &quot;Front&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="5" name="Set frame" sid="560106896319661" type="Item">
+                                    <param id="0" name="Frame number">Personaje.AnimationFrame</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block any="1" collapsed="1" sid="5047453249483735">
+                    <conditions>
+                        <condition disabled="1" id="2" name="Key is down" sid="4460652375386587" type="Keyboard">
+                            <param id="0" name="Key">37 (Left arrow)</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="4839953265081573" type="System">
+                            <param id="0" name="First value">Personaje.8Direction.MovingAngle</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">135</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="6065174486400706" type="System">
+                            <param id="0" name="First value">Personaje.8Direction.MovingAngle</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">-135</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="2041813202257922" type="Personaje">
+                            <param id="0" name="Animation">TipoSprite&amp;&quot;Left&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9769430799273738">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="6907271682140318" type="Item">
+                                    <param id="0" name="Instance variable">PutOn</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="2574783090235551" type="Item">
+                                    <param id="0" name="Animation">Item.Animation &amp; &quot;Left&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="5" name="Set frame" sid="5401153544949522" type="Item">
+                                    <param id="0" name="Frame number">Personaje.AnimationFrame</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block collapsed="1" sid="5747589647100081">
+                    <conditions>
+                        <condition disabled="1" id="2" name="Key is down" sid="6907452917280864" type="Keyboard">
+                            <param id="0" name="Key">38 (Up arrow)</param>
+                        </condition>
+                        <condition id="-21" name="Is between values" sid="5835313791637535" type="System">
+                            <param id="0" name="Value">Personaje.8Direction.MovingAngle</param>
+                            <param id="1" name="Lower bound">-135</param>
+                            <param id="2" name="Upper bound">-45</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="2664488057039746" type="Personaje">
+                            <param id="0" name="Animation">TipoSprite&amp;&quot;Back&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9778806303620445">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="813012982729249" type="Item">
+                                    <param id="0" name="Instance variable">PutOn</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="6152086649776004" type="Item">
+                                    <param id="0" name="Animation">Item.Animation &amp; &quot;Back&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="5" name="Set frame" sid="7740705782239836" type="Item">
+                                    <param id="0" name="Frame number">Personaje.AnimationFrame</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block collapsed="1" sid="6154149182700111">
+                    <conditions>
+                        <condition disabled="1" id="2" name="Key is down" sid="4544754513930954" type="Keyboard">
+                            <param id="0" name="Key">39 (Right arrow)</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="8581168159138117" type="System">
+                            <param id="0" name="First value">Personaje.8Direction.MovingAngle</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">45</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="8024800411104429" type="System">
+                            <param id="0" name="First value">Personaje.8Direction.MovingAngle</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">-45</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="2556903281680966" type="Personaje">
+                            <param id="0" name="Animation">TipoSprite&amp;&quot;Right&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="1824464607158537">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="1432392566568582" type="Item">
+                                    <param id="0" name="Instance variable">PutOn</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="1446693167931557" type="Item">
+                                    <param id="0" name="Animation">Item.Animation &amp; &quot;Right&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="5" name="Set frame" sid="6503328611431694" type="Item">
+                                    <param id="0" name="Frame number">Personaje.AnimationFrame</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9392367710908194">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3012306524378937" type="Personaje">
+                    <param id="0" name="Object">Escondite</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="544985679945843" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="1560032619155795" type="Enemigo">
+                    <param id="0" name="Angle">Enemigo.Bullet.AngleOfMotion + 180</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4778315699409141" type="Texto">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4715951914372406">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="5428306843986909" type="Personaje">
+                    <param id="0" name="Object">Escondite</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="3442839981651722" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4249925552710981" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="2996709068447811" type="Enemigo">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action behavior="Timer" id="0" name="Start timer" sid="3015211891321881" type="Personaje">
+                    <param id="0" name="Duration">3</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;Escondite&quot;</param>
+                </action>
+                <action behavior="Timer" id="1" name="Stop timer" sid="8690323987367119" type="Personaje">
+                    <param id="0" name="Tag">&quot;Persecusion&quot;</param>
+                </action>
+                <action id="4" name="Set animation" sid="7771790609921966" type="Enemigo">
+                    <param id="0" name="Animation">TipoSprite&amp;&quot;Stop&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="18" name="Add gain effect" sid="6424766781414199" type="Audio">
+                    <param id="0" name="Tag">&quot;Corriendo&quot;</param>
+                    <param id="1" name="Gain">0</param>
+                </action>
+                <action id="15" name="Set effect parameter" sid="653289074931019" type="Audio">
+                    <param id="0" name="Tag">&quot;Corriendo&quot;</param>
+                    <param id="1" name="Index">0</param>
+                    <param id="2" name="Parameter">4</param>
+                    <param id="3" name="Value">-100</param>
+                    <param id="4" name="Ramp">2</param>
+                    <param id="5" name="Time">3</param>
+                </action>
+                <action id="-16" name="Wait" sid="1894985308928943" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="12" name="Remove all effects" sid="4252050725438923" type="Audio">
+                    <param id="0" name="Tag">&quot;Corriendo&quot;</param>
+                </action>
+                <action id="6" name="Stop" sid="3915023824116465" type="Audio">
+                    <param id="0" name="Tag">&quot;Corriendo&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="508097648278269" type="Audio">
+                    <param id="0" name="Audio file">Background</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;Background&quot;</param>
+                </action>
+                <action id="-27" name="Set effect enabled" sid="5837491444019684" type="Vision">
+                    <param id="0" name="Mode">0</param>
+                    <param id="1" name="Effect">&quot;Pulse&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2574383982302262">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="4862909981491358" type="Personaje">
+                    <param id="0" name="Tag">&quot;Escondite&quot;</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="4287965700973402" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="1227030158773298" type="Enemigo">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2720345205048728" type="Enemigo">
+                    <param id="0" name="Angle">Enemigo.Bullet.AngleOfMotion + 180</param>
+                </action>
+                <action id="-9" name="Set value" sid="2643031833376283" type="System">
+                    <param id="0" name="Variable">Persecusion</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-27" name="Set effect enabled" sid="9525080232155891" type="Vision">
+                    <param id="0" name="Mode">0</param>
+                    <param id="1" name="Effect">&quot;Pulse&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block collapsed="1" sid="2207346749097893">
+            <conditions>
+                <condition behavior="8Direction" id="0" name="Is moving" sid="9376419699899595" type="Personaje" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="3954102075581176">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4196250717151798" type="System">
+                            <param id="0" name="Variable">Corriendo</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="5" inverted="1" name="Is tag playing" sid="89235615272962" type="Audio">
+                            <param id="0" name="Tag">&quot;Pasos&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="5038467542909855" type="Audio">
+                            <param id="0" name="Audio file">Pasos</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;Pasos&quot;</param>
+                        </action>
+                        <action id="6" name="Stop" sid="6270271072708667" type="Audio">
+                            <param id="0" name="Tag">&quot;Pasos2&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1443185510403008">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7469639187637298" type="System">
+                            <param id="0" name="Variable">Corriendo</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="5" inverted="1" name="Is tag playing" sid="6864894217581791" type="Audio">
+                            <param id="0" name="Tag">&quot;Pasos2&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="7135329121493861" type="Audio">
+                            <param id="0" name="Audio file">Pasos2</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;Pasos2&quot;</param>
+                        </action>
+                        <action id="6" name="Stop" sid="1406368973231129" type="Audio">
+                            <param id="0" name="Tag">&quot;Pasos&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="4462964693972759">
+            <conditions>
+                <condition behavior="8Direction" id="0" inverted="1" name="Is moving" sid="9205751117358873" type="Personaje" />
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" sid="1691724593869631" type="Audio">
+                    <param id="0" name="Tag">&quot;Pasos&quot;</param>
+                </action>
+                <action id="6" name="Stop" sid="7929613244042871" type="Audio">
+                    <param id="0" name="Tag">&quot;Pasos2&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8020078627012133">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="609540225511091" type="Personaje">
+                    <param id="0" name="Object">Palanca</param>
+                </condition>
+                <condition id="-34" name="Pick by evaluate" sid="6617152984100777" type="System">
+                    <param id="0" name="Object">Puente</param>
+                    <param id="1" name="Expression">Puente.UID = Palanca.PuenteUID</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="9016901212726043" type="Puente">
+                    <param id="0" name="Instance variable">Extendido</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="6479824481025994" type="Texto3">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="1500725449496805" type="Puente">
+                    <param id="0" name="Animation">&quot;Open&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="2175321102296316" type="Palanca">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="6" name="Set speed" sid="4980793490520339" type="Puente">
+                    <param id="0" name="Speed">2</param>
+                </action>
+                <action id="0" name="Play" sid="9303263542249861" type="Audio">
+                    <param id="0" name="Audio file">puente</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="935742746703149" type="System">
+                    <param id="0" name="Seconds">1.5</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="9680366780613983" type="Puente">
+                    <param id="0" name="Instance variable">Extendido</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action behavior="Solid" id="0" name="Set enabled" sid="6859284980792141" type="Puente">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="547033221562668">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3483273302647387" type="Personaje">
+                    <param id="0" name="Object">Palanca</param>
+                </condition>
+                <condition id="-34" name="Pick by evaluate" sid="2776391409513067" type="System">
+                    <param id="0" name="Object">Puente</param>
+                    <param id="1" name="Expression">Puente.UID = Palanca.PuenteUID</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="4826726096350704" type="Puente">
+                    <param id="0" name="Instance variable">Extendido</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="8136834328934622" type="Puente">
+                    <param id="0" name="Animation">&quot;Close&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="3897203077529358" type="Palanca">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="Solid" id="0" name="Set enabled" sid="8253397969838943" type="Puente">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action id="0" name="Play" sid="7097505133493057" type="Audio">
+                    <param id="0" name="Audio file">puente</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="3813551329198262" type="System">
+                    <param id="0" name="Seconds">1.5</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="9547329439018356" type="Puente">
+                    <param id="0" name="Instance variable">Extendido</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="8628570368744259">
+            <conditions>
+                <condition id="9" name="Is overlapping at offset" sid="2843992775076422" type="Arbol">
+                    <param id="0" name="Object">Personaje</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">-100</param>
+                </condition>
+                <condition id="9" name="Is overlapping at offset" sid="2240569034660533" type="Arbol">
+                    <param id="0" name="Object">Personaje</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">50</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="1925362858487784">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="8104027727306153" type="Arbol">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="2628476431574357" type="Arbol">
+                            <param id="0" name="Layer">&quot;Front&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9861244436452901">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="6405107158231386" type="Arbol">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="9904481610015004" type="Arbol">
+                            <param id="0" name="Layer">&quot;Background&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="3831140412806213">
+            <conditions>
+                <condition id="9" name="Is overlapping at offset" sid="2786154815097837" type="Arbol">
+                    <param id="0" name="Object">Enemigo</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">-100</param>
+                </condition>
+                <condition id="9" name="Is overlapping at offset" sid="6292983790360897" type="Arbol">
+                    <param id="0" name="Object">Enemigo</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">50</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="1247359754082007">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="4357596288219943" type="Arbol">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="1185700666776202" type="Arbol">
+                            <param id="0" name="Layer">&quot;Front&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9117665966896607">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="5864563144739881" type="Arbol">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="100417273397417" type="Arbol">
+                            <param id="0" name="Layer">&quot;Background&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" collapsed="1" sid="9298981209490087">
+            <conditions>
+                <condition id="9" name="Is overlapping at offset" sid="4837745153042571" type="Escondite">
+                    <param id="0" name="Object">Personaje</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">-100</param>
+                </condition>
+                <condition id="9" name="Is overlapping at offset" sid="8271051014482858" type="Escondite">
+                    <param id="0" name="Object">Personaje</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">50</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="3931798413216723">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="3924697891125146" type="Escondite">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="1657072783628309" type="Escondite">
+                            <param id="0" name="Layer">&quot;Front&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7520318713232362">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="8957238795324676" type="Escondite">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="9529683019383536" type="Escondite">
+                            <param id="0" name="Layer">&quot;Background&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" collapsed="1" sid="5934558939317361">
+            <conditions>
+                <condition id="9" name="Is overlapping at offset" sid="8596373289008871" type="Escondite">
+                    <param id="0" name="Object">Enemigo</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">-100</param>
+                </condition>
+                <condition id="9" name="Is overlapping at offset" sid="2982652814860477" type="Escondite">
+                    <param id="0" name="Object">Enemigo</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">50</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="6042312919077681">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="5729949921363093" type="Escondite">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="4666698316732807" type="Escondite">
+                            <param id="0" name="Layer">&quot;Front&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="327153890202494">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="5049557345321469" type="Escondite">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="9918219235896582" type="Escondite">
+                            <param id="0" name="Layer">&quot;Background&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" collapsed="1" sid="3629359696456984">
+            <conditions>
+                <condition id="9" name="Is overlapping at offset" sid="2645981038782454" type="piedra">
+                    <param id="0" name="Object">Personaje</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">-100</param>
+                </condition>
+                <condition id="9" name="Is overlapping at offset" sid="4965392711961332" type="piedra">
+                    <param id="0" name="Object">Personaje</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">50</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="6188995332866013">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="5764758668645675" type="piedra">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="3364706860303409" type="piedra">
+                            <param id="0" name="Layer">&quot;Front&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7240710364044503">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="3657795070796729" type="piedra">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="2904149059781991" type="piedra">
+                            <param id="0" name="Layer">&quot;Background&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" collapsed="1" sid="1456764386404445">
+            <conditions>
+                <condition id="9" name="Is overlapping at offset" sid="924078602499735" type="piedra">
+                    <param id="0" name="Object">Enemigo</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">-100</param>
+                </condition>
+                <condition id="9" name="Is overlapping at offset" sid="1293897675172786" type="piedra">
+                    <param id="0" name="Object">Enemigo</param>
+                    <param id="1" name="Offset X">0</param>
+                    <param id="2" name="Offset Y">50</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="5550044272431343">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="1055228311058686" type="piedra">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="8935617328723852" type="piedra">
+                            <param id="0" name="Layer">&quot;Front&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3635852196585229">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="6635626077558136" type="piedra">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">Personaje.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-26" name="Move to layer" sid="9917244956789368" type="piedra">
+                            <param id="0" name="Layer">&quot;Background&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="2013772687345237">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="3889356504515676" type="System">
+                    <param id="0" name="Variable">ObjetosConseguidos</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="2374309696356735" type="System" />
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" sid="8049175241596459" type="Audio">
+                    <param id="0" name="Tag">&quot;Background&quot;</param>
+                </action>
+                <action id="6" name="Stop" sid="3462138475393868" type="Audio">
+                    <param id="0" name="Tag">&quot;Corriendo&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="7845253020164313" type="Audio">
+                    <param id="0" name="Audio file">son mostros!</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;sonmostros&quot;</param>
+                </action>
+                <action behavior="Timer" id="1" name="Stop timer" sid="2534385337730683" type="Personaje">
+                    <param id="0" name="Tag">&quot;Persecusion&quot;</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4343701834791625" type="TimerItem">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="7023570352779909" type="Personaje">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="2344280275286937" type="Enemigo">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="6630878408258552" type="AnimFinal">
+                    <param id="0" name="X">Personaje.X</param>
+                    <param id="1" name="Y">Personaje.Y</param>
+                </action>
+                <action id="6" name="Set speed" sid="5113562678079441" type="AnimFinal">
+                    <param id="0" name="Speed">15</param>
+                </action>
+                <action id="-16" name="Wait" sid="1306028754656695" type="System">
+                    <param id="0" name="Seconds">3.6</param>
+                </action>
+                <action id="0" name="Play" sid="2935136673914384" type="Audio">
+                    <param id="0" name="Audio file">Finalheavy</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;FinalHeavy&quot;</param>
+                </action>
+                <action behavior="8Direction" id="8" name="Set enabled" sid="3464762757573709" type="Personaje">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="6195633195314965" type="Enemigo">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2947305462054736" type="AnimFinal">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="7498902913274669" type="System">
+                    <param id="0" name="Variable">TipoSprite</param>
+                    <param id="1" name="Value">&quot;Final&quot;</param>
+                </action>
+                <action behavior="LineOfSight" id="0" name="Set range" sid="8391133487790736" type="Enemigo">
+                    <param id="0" name="Range">10000</param>
+                </action>
+                <action id="4" name="Set animation" sid="5372314542730093" type="Puente">
+                    <param id="0" name="Animation">&quot;Open&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="6" name="Set speed" sid="4274813554315302" type="Puente">
+                    <param id="0" name="Speed">2</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="5074803444557608" type="Item">
+                    <param id="0" name="Instance variable">PutOn</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="11" name="Set collisions enabled" sid="5593912953284487" type="Item">
+                    <param id="0" name="Collisions">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="8724361407669364" type="Item">
+                    <param id="0" name="Animation">item.Animation</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="11" name="Set collisions enabled" sid="2880103878630289" type="Escondite">
+                    <param id="0" name="Collisions">0</param>
+                </action>
+                <action id="11" name="Set collisions enabled" sid="3429078102365067" type="PuertaInvisible">
+                    <param id="0" name="Collisions">0</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="4368491501880535" type="Vision">
+                    <param id="0" name="Effect">&quot;Pulse&quot;</param>
+                    <param id="1" name="Parameter index">2</param>
+                    <param id="2" name="Value">20</param>
+                </action>
+                <action id="-28" name="Set effect parameter" sid="828407801597571" type="Vision">
+                    <param id="0" name="Effect">&quot;Pulse&quot;</param>
+                    <param id="1" name="Parameter index">3</param>
+                    <param id="2" name="Value">200</param>
+                </action>
+                <action id="-15" name="Set visible" sid="3705904999897655" type="Texto2">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
